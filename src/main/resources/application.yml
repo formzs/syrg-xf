@@ -1,0 +1,18 @@
+spring:
+  application:
+      name: syrg_xf
+  datasource:
+    url: jdbc:oracle:thin:@39.96.90.57:1521:orcl
+    username: xf_dev
+    password: zhxf123456
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+
+jpa:
+  hibernate:
+     ddl-auto: update
+
+logging:
+  config: classpath:log4j.xml
+
+server:
+  port: 9999
