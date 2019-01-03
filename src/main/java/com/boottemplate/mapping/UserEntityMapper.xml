@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.boottemplate.mapper.UserEntityMapper">
+  <resultMap id="BaseResultMap" type="com.boottemplate.entity.UserEntity">
+    <id column="ID" jdbcType="DECIMAL" property="id" />
+    <result column="NICKNAME" jdbcType="VARCHAR" property="nickname" />
+    <result column="PHONE" jdbcType="DECIMAL" property="phone" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="USERNAME" jdbcType="VARCHAR" property="username" />
+    <result column="UNITID" jdbcType="DECIMAL" property="unitid" />
+    <result column="UNITNAME" jdbcType="VARCHAR" property="unitname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, NICKNAME, PHONE, PASSWORD, USERNAME, UNITID, UNITNAME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Short" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from XF_USER
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short">
+    delete from XF_USER
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.boottemplate.entity.UserEntity">
+    insert into XF_USER (ID, NICKNAME, PHONE, 
+      PASSWORD, USERNAME, UNITID, 
+      UNITNAME)
+    values (#{id,jdbcType=DECIMAL}, #{nickname,jdbcType=VARCHAR}, #{phone,jdbcType=DECIMAL}, 
+      #{password,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{unitid,jdbcType=DECIMAL}, 
+      #{unitname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.boottemplate.entity.UserEntity">
+    insert into XF_USER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="nickname != null">
+        NICKNAME,
+      </if>
+      <if test="phone != null">
+        PHONE,
+      </if>
+      <if test="password != null">
+        PASSWORD,
+      </if>
+      <if test="username != null">
+        USERNAME,
+      </if>
+      <if test="unitid != null">
+        UNITID,
+      </if>
+      <if test="unitname != null">
+        UNITNAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=DECIMAL},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null">
+        #{unitid,jdbcType=DECIMAL},
+      </if>
+      <if test="unitname != null">
+        #{unitname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.boottemplate.entity.UserEntity">
+    update XF_USER
+    <set>
+      <if test="nickname != null">
+        NICKNAME = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        PHONE = #{phone,jdbcType=DECIMAL},
+      </if>
+      <if test="password != null">
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="unitid != null">
+        UNITID = #{unitid,jdbcType=DECIMAL},
+      </if>
+      <if test="unitname != null">
+        UNITNAME = #{unitname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.boottemplate.entity.UserEntity">
+    update XF_USER
+    set NICKNAME = #{nickname,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=DECIMAL},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      USERNAME = #{username,jdbcType=VARCHAR},
+      UNITID = #{unitid,jdbcType=DECIMAL},
+      UNITNAME = #{unitname,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

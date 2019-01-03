@@ -1,18 +1,31 @@
 spring:
-  application:
-      name: syrg_xf
   datasource:
     url: jdbc:oracle:thin:@39.96.90.57:1521:orcl
     username: xf_dev
     password: zhxf123456
     driver-class-name: oracle.jdbc.driver.OracleDriver
-
-jpa:
-  hibernate:
-     ddl-auto: update
+    initial-size: 10
+    max-active: 200
+    min-idle: 10
+    max-wait: 60000
+    pool-prepared-statements: true
+    max-open-prepared-statements: 20
+    validation-query: select 'x' FROM DUAL
+    test-on-borrow: false
+    test-on-return: false
+    test-while-idle: true
+    time-between-eviction-runs-millis: 60000
+    min-evictable-idle-time-millis: 300000
+    type: com.alibaba.druid.pool.DruidDataSource
+  application:
+    name: syrg_xf
 
 logging:
   config: classpath:log4j.xml
 
 server:
   port: 9999
+
+mybatis:
+  config-location: classpath:mybatis.xml
+  mapper-locations: classpath:/com/boottemplate/mapping/*.xml
